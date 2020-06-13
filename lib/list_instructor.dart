@@ -133,7 +133,7 @@ class _ListInstructorsPageState extends State<ListInstructorsPage> {
                   ],
                 ),
               ),
-            ),
+            ),//
             Positioned(
               left: 12.0,
               top: 15.0,
