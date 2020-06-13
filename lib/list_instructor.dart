@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:surfinstructors/instructor_detail.dart';
 import 'package:surfinstructors/models/instructor.dart';
 
 class ListInstructorsPage extends StatefulWidget {
@@ -105,7 +106,13 @@ class _ListInstructorsPageState extends State<ListInstructorsPage> {
   buildInstructorGrid(Instructor instructor) {
     return GestureDetector(
       onTap: () {
-        // TODO: TAP
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => InstructorDetails(
+              selectedInstructor: instructor,
+            ),
+          ),
+        );
       },
       child: Padding(
         padding: EdgeInsets.all(5.0),
@@ -118,10 +125,10 @@ class _ListInstructorsPageState extends State<ListInstructorsPage> {
             ),
             Positioned(
               left: 30.0,
-              top: 65.0,
+              top: 15.0,
               child: Container(
-                height: 30.0,
-                width: 40.0,
+                height: 80.0,
+                width: 80.0,
                 decoration: BoxDecoration(
                   boxShadow: [
                     BoxShadow(
@@ -133,7 +140,7 @@ class _ListInstructorsPageState extends State<ListInstructorsPage> {
                   ],
                 ),
               ),
-            ),//
+            ), //
             Positioned(
               left: 12.0,
               top: 15.0,
@@ -141,15 +148,41 @@ class _ListInstructorsPageState extends State<ListInstructorsPage> {
                 tag: instructor.instructorPic,
                 child: Container(
                   height: 110.0,
-                  width: 85.0,
+                  width: 110.0,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(7.0),
+                    borderRadius: BorderRadius.circular(8.0),
                     image: DecorationImage(
                       image: AssetImage(instructor.instructorPic),
                       fit: BoxFit.cover,
                     ),
                   ),
                 ),
+              ),
+            ),
+            Positioned(
+              left: 22.0,
+              top: 138.0,
+              child: Column(
+                children: <Widget>[
+                  Text(
+                    instructor.instructorName,
+                    overflow: TextOverflow.fade,
+                    style: GoogleFonts.sourceSansPro(fontSize: 12.0),
+                  ),
+                  Row(
+                    children: <Widget>[
+                      Icon(
+                        Icons.star,
+                        color: Colors.grey.withOpacity(0.5),
+                      ),
+                      SizedBox(width: 3.0),
+                      Text(
+                        instructor.rating,
+                        style: GoogleFonts.sourceSansPro(fontSize: 11.0),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
           ],
